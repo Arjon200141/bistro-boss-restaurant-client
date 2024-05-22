@@ -13,7 +13,7 @@ const Footer = () => {
                         </p>
                     </nav>
                 </div>
-                <div className="footer w p-10 bg-[#1F2937] text-neutral-content">
+                <div className="footer w p-10 bg-[#111827] text-neutral-content">
                     <nav className="">
                         <h2 className="ml-40 text-3xl font-semibold text-white text-center">Follow US</h2>
                         <p className="ml-40 text-sm text-white text-center">Join us on social media</p>
