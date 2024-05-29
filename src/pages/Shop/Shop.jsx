@@ -5,10 +5,26 @@ import { useState } from "react";
 import 'react-tabs/style/react-tabs.css';
 import useMenu from "../../Hooks/useMenu";
 import FoodCard from "../../Components/FoodCard";
+import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Pagination } from 'swiper/modules';
+// import 'swiper/css';
+// import 'swiper/css/pagination';
+
 
 const Shop = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+    // const pagination = {
+    //     clickable: true,
+    //     renderBullet: function (index, className) {
+    //         return '<span class="' + className + '">' + (index + 1) + '</span>';
+    //     },
+    // };
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
     const [menu] = useMenu();
+    const { category } = useParams();
+    const initialIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialIndex);
     const dessert = menu.filter(item => item.category === 'dessert')
     const pizza = menu.filter(item => item.category === 'pizza')
     const soup = menu.filter(item => item.category === 'soup')
@@ -16,6 +32,10 @@ const Shop = () => {
     const drinks = menu.filter(item => item.category === 'drinks')
     return (
         <div className="mb-16">
+            <Helmet>
+                <title>Bistro Boss | Shop</title>
+            </Helmet>
+
             <Cover
                 img={shopCover}
                 title="OUR SHOP"
@@ -68,6 +88,24 @@ const Shop = () => {
                     </div>
                 </TabPanel>
             </Tabs>
+
+
+
+            {/* <>
+                <Swiper
+                    pagination={pagination}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+                    <SwiperSlide>
+                    <div className="grid grid-cols-3 gap-6 my-16">
+                        {
+                            salad.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
+                        }
+                    </div>
+                    </SwiperSlide>
+                </Swiper>
+            </> */}
         </div>
     );
 };

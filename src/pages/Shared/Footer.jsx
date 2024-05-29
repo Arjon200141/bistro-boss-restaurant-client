@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <footer>
+        <footer >
             <div className="flex justify-between">
-                <div className="footer p-10 bg-[#1F2937] ">
+                <div className="footer p-10 py-16 bg-[#1F2937] ">
                     <nav className="ml-40 space-y-2">
                         <h2 className="ml-8 text-3xl font-semibold text-white ">Contact Us</h2>
                         <p className="text-sm text-white text-center">
@@ -13,7 +13,7 @@ const Footer = () => {
                         </p>
                     </nav>
                 </div>
-                <div className="footer w p-10 bg-[#111827] text-neutral-content">
+                <div className="footer p-10 py-16 bg-[#111827] text-neutral-content">
                     <nav className="">
                         <h2 className="ml-40 text-3xl font-semibold text-white text-center">Follow US</h2>
                         <p className="ml-40 text-sm text-white text-center">Join us on social media</p>
@@ -35,9 +35,9 @@ const Footer = () => {
                     </nav>
                 </div>
             </div>
-            <div className="footer-center p-4 bg-base-300 text-base-content">
+            <div className="footer-center p-4 bg-[#151515] text-white">
                 <aside>
-                    <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © 2024 - All right reserved by Bistro Boss Restaurant</p>
                 </aside>
             </div>
         </footer>

@@ -8,7 +8,7 @@ const FoodCard = ({ item }) => {
                 <h2 className=" text-2xl font-semibold ">{name}</h2>
                 <p className="text-sm text-[#737373]">{recipe}</p>
                 <div className="card-actions justify-center">
-                    <button className="btn font-semibold text-lg uppercase text-[#BB8506] border-0 border-b-4 border-black">add to cart</button>
+                    <button className="btn font-semibold bg-slate-200 text-lg uppercase hover:bg-gray-700 hover:text-orange-300 text-[#BB8506] border-0 border-b-4 border-orange-400">add to cart</button>
                 </div>
             </div>
         </div>
