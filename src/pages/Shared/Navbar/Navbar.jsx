@@ -6,8 +6,9 @@ const Navbar = () => {
         <li><Link to="contact"><a>CONTACT us</a></Link></li>
         <li><a>DASHBOARD</a></li>
         <li><Link to="menu"><a>Our Menu</a></Link></li>
-        <li><Link to="shop"><a>Our Shop</a></Link></li>
+        <li><Link to="shop/salad"><a>Our Shop</a></Link></li>
         <li><a><img src="https://i.ibb.co/kHcKFLQ/shopping-cart.png" alt="" className="w-6 h-6"/></a></li>
+        <li><Link to="login"><a>Log In</a></Link></li>
     </>
     return (
         <>
