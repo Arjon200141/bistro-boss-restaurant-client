@@ -1,5 +1,44 @@
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProviders";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+
+
 const FoodCard = ({ item }) => {
-    const { image, name, recipe, price } = item;
+    const { image, name, recipe, price,_id } = item;
+    const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const axiossecure = useAxiosSecure();
+
+    const handleAddtoCart = food =>{
+        if(user && user.email){
+            console.log(user.email,food);
+            const cartItem = {
+                menuId:_id,
+                email:user.email,
+                name,
+                image,
+                price
+            }
+            axiossecure.post('http://localhost:5000/carts',cartItem)
+            .then(res=>{
+                console.log(res.data);
+                if(res.data.insertedId){
+                    Swal.fire({
+                        title: "Success!",
+                        text: `${name} Added to Cart Successfully!!`,
+                        icon: "success"
+                      });
+                }
+            })
+
+        }
+        else{
+            alert("User is Not Logged In!");
+            navigate('/login');
+        }
+    }
     return (
         <div className="card card-compact bg-[#f4f2f2] shadow-lg">
             <figure><img src={image} alt="Shoes"/></figure>
@@ -8,7 +47,8 @@ const FoodCard = ({ item }) => {
                 <h2 className=" text-2xl font-semibold ">{name}</h2>
                 <p className="text-sm text-[#737373]">{recipe}</p>
                 <div className="card-actions justify-center">
-                    <button className="btn font-semibold bg-slate-200 text-lg uppercase hover:bg-gray-700 hover:text-orange-300 text-[#BB8506] border-0 border-b-4 border-orange-400">add to cart</button>
+                    <button
+                     onClick={()=>handleAddtoCart(item)} className="btn font-semibold bg-slate-200 text-lg uppercase hover:bg-gray-700 hover:text-orange-300 text-[#BB8506] border-0 border-b-4 border-orange-400">add to cart</button>
                 </div>
             </div>
         </div>

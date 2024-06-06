@@ -1,14 +1,42 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProviders";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
+
     const navOPtions = <>
         <li><Link to="/"><a>Home</a></Link></li>
         <li><Link to="contact"><a>CONTACT us</a></Link></li>
         <li><a>DASHBOARD</a></li>
         <li><Link to="menu"><a>Our Menu</a></Link></li>
         <li><Link to="shop/salad"><a>Our Shop</a></Link></li>
-        <li><a><img src="https://i.ibb.co/kHcKFLQ/shopping-cart.png" alt="" className="w-6 h-6"/></a></li>
-        <li><Link to="login"><a>Log In</a></Link></li>
+        <li><Link to="/">
+            <a><button className="relative mr-2">
+                <FaShoppingCart className="h-6 w-6" />
+                <div className="badge h-3 w-3 absolute top-4 left-4 ">{cart.length}</div>
+            </button></a></Link></li>
+
+        {
+            user ?
+                <>
+                    {/* <span className="mx-4 mt-3">{user?.displayName}</span> */}
+                    <button onClick={handleLogOut}>Sign Out</button>
+                </>
+                :
+                <>
+                    <li><Link to="login"><a>Log In</a></Link></li>
+                </>
+        }
     </>
     return (
         <>
@@ -28,7 +56,6 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1 inter-font">
                         {navOPtions}
                     </ul>
-                    <a className="btn">Button</a>
                 </div>
             </div>
         </>
